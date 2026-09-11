@@ -1,1 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Uma surpresa para ti ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #080808;
+    color: white;
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+.tela {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+}
+
+.inicio {
+    background:
+        radial-gradient(circle at center, #35101d 0%, #080808 65%);
+}
+
+.coracao {
+    font-size: 65px;
+    animation: pulsar 1.5s infinite;
+}
+
+h1 {
+    font-size: 34px;
+    margin: 15px 0;
+}
+
+.subtitulo {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 500px;
+    color: #ddd;
+}
+
+.botao {
+    margin-top: 25px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #e91e63;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(233,30,99,.5);
+}
+
+.foto-box {
+    width: 100%;
+    max-width: 430px;
+}
+
+.foto-box img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 0 35px rgba(255,255,255,.15);
+}
+
+.mensagem {
+    font-size: 21px;
+    line-height: 1.6;
+    margin-top: 25px;
+    max-width: 500px;
+}
+
+.numero {
+    margin-bottom: 15px;
+    color: #ff719d;
+    font-size: 16px;
+}
+
+.final {
+    background:
+        radial-gradient(circle, #4b0d23 0%, #080808 70%);
+}
+
+.final h2 {
+    font-size: 42px;
+    line-height: 1.25;
+    max-width: 700px;
+    text-transform: uppercase;
+    animation: aparecer 2s ease;
+}
+
+.final .coracoes {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.esconder {
+    display: none;
+}
+
+@keyframes pulsar {
+    0%,100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade {
+    animation: aparecer .8s ease;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INÍCIO -->
+<section class="tela inicio" id="inicio">
+
+    <div class="coracao">❤️</div>
+
+    <h1>Tenho uma coisa para te mostrar...</h1>
+
+    <p class="subtitulo">
+        Algumas fotografias guardam momentos.
+        Outras guardam sentimentos.
+        Estas guardam um pouco daquilo que sinto por ti.
+    </p>
+
+    <button class="botao" onclick="comecar()">
+        Começar a surpresa ❤️
+    </button>
+
+</section>
+
+
+<!-- FOTOS -->
+<section class="tela esconder" id="fotos">
+
+    <div class="foto-box">
+        <div class="numero" id="numero"></div>
+
+        <img id="imagem" src="" alt="Nossa fotografia">
+
+        <p class="mensagem fade" id="mensagem"></p>
+    </div>
+
+    <button class="botao" onclick="proxima()">
+        Continuar ❤️
+    </button>
+
+</section>
+
+
+<!-- FINAL -->
+<section class="tela final esconder" id="final">
+
+    <div class="coracoes">❤️ ❤️ ❤️</div>
+
+    <h2>
+        QUER NAMORAR COMIGO PRA VALER?
+    </h2>
+
+    <p class="subtitulo">
+        Eu não quero que isto seja apenas uma surpresa.
+        Quero que seja o começo de algo bonito entre nós. ❤️
+    </p>
+
+</section>
+
+
+<script>
+
+const fotos = [
+    {
+        imagem: "Fotos/01.jpeg",
+        mensagem: "Há fotografias que conseguem dizer aquilo que às vezes as palavras não conseguem. E esta faz-me lembrar o quanto gosto de ter-te na minha vida. ❤️"
+    },
+    {
+        imagem: "Fotos/02.jpeg",
+        mensagem: "O teu sorriso tem uma maneira especial de tornar qualquer momento mais bonito. 😊❤️"
+    },
+    {
+        imagem: "Fotos/03.jpeg",
+        mensagem: "Cada momento contigo acaba por se tornar uma memória que eu quero guardar para sempre. ❤️"
+    },
+    {
+        imagem: "Fotos/04.jpeg",
+        mensagem: "Talvez tu não percebas, mas existe algo em ti que faz os meus dias ficarem muito mais especiais. 💕"
+    },
+    {
+        imagem: "Fotos/05.jpeg",
+        mensagem: "Entre tantos momentos que a vida poderia dar-me, eu fico feliz por alguns deles terem sido contigo. ❤️"
+    },
+    {
+        imagem: "Fotos/06.jpeg",
+        mensagem: "Esta fotografia é bonita, mas o que ela representa para mim é ainda mais bonito. 🥰"
+    },
+    {
+        imagem: "Fotos/07.jpeg",
+        mensagem: "Se pudesse guardar alguns momentos num lugar especial, certamente haveria muitos contigo. ❤️"
+    },
+    {
+        imagem: "Fotos/08.jpeg",
+        mensagem: "E depois de tantas fotografias, ainda falta dizer a coisa mais importante... ❤️"
+    }
+];
+
+let atual = 0;
+
+function comecar() {
+
+    document.getElementById("inicio").classList.add("esconder");
+    document.getElementById("fotos").classList.remove("esconder");
+
+    mostrarFoto();
+}
+
+function mostrarFoto() {
+
+    const foto = fotos[atual];
+
+    const imagem = document.getElementById("imagem");
+    const mensagem = document.getElementById("mensagem");
+    const numero = document.getElementById("numero");
+
+    imagem.classList.remove("fade");
+    mensagem.classList.remove("fade");
+
+    void imagem.offsetWidth;
+    void mensagem.offsetWidth;
+
+    imagem.src = foto.imagem;
+    mensagem.textContent = foto.mensagem;
+
+    numero.textContent =
+        "Momento " + (atual + 1) + " de " + fotos.length;
+
+    imagem.classList.add("fade");
+    mensagem.classList.add("fade");
+}
+
+function proxima() {
+
+    atual++;
+
+    if (atual < fotos.length) {
+
+        mostrarFoto();
+
+    } else {
+
+        document.getElementById("fotos").classList.add("esconder");
+        document.getElementById("final").classList.remove("esconder");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+}
+
+</script>
+
+</body>
+</html>
