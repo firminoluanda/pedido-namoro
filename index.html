@@ -137,7 +137,10 @@ h1 {
 </style>
 </head>
 
-<body>
+<body> 
+    <audio id="musica" loop>
+    <source src="Levy - Você [ Official Vídeo ].mp3" type="audio/mpeg">
+</audio>
 
 <!-- INÍCIO -->
 <section class="tela inicio" id="inicio">
@@ -233,7 +236,7 @@ const fotos = [
 
 let atual = 0;
 
-function comecar() {
+function comecar() {     document.getElementById("musica").play();
 
     document.getElementById("inicio").classList.add("esconder");
     document.getElementById("fotos").classList.remove("esconder");
